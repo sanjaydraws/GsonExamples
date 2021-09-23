@@ -1,0 +1,33 @@
+Gson (also known as Google Gson) is a small Java-based library  for parsing and creating JSON objects.
+ It’s a serialization/deserialization library to convert Java Objects into JSON and back.
+
+
+ Uses of Gson
+-> Conversion of Java Objects into JSON and back.
+-> Conversion of a JSON string to an equivalent Java object.
+
+
+(a). Gson
+Gson is a class found in com.google.gson package and is the main class we need to use Gson Library.
+
+Normally we use it first by first constructing a Gson instance and then invoking toJson(Object) or fromJson(String, Class) methods on it.
+
+(b). JsonElement
+JsonElement is a class found in com.google.gson package that represents an element of Json.
+
+Here are JsonElement Objects:
+JsonObject
+JsonArray
+JsonPrimitive
+JsonNull.
+
+(c) JsonObject -> is a class found in com.google.gson package that represents an object type in Json.
+This object can comprise name-value pairs where names are strings, and values are any other type of JsonElement.
+With this then we can build a tree of JsonElements. Those elements are maintained in order they were added.
+
+
+d).JsonParser -> JsonParser is a class found in com.google.gson package that is used to parse Json into a parse tree of JsonElements
+
+
+
+
