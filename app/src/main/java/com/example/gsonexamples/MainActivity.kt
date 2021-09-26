@@ -5,8 +5,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gsonexamples.databinding.ActivityMainBinding
 import com.example.gsonexamples.models.Address
+import com.example.gsonexamples.models.FamilyMember
 import com.example.gsonexamples.models.User
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
+
 
 class MainActivity : AppCompatActivity() {
     var binding:ActivityMainBinding? = null
@@ -31,8 +35,8 @@ class MainActivity : AppCompatActivity() {
         /*convert json to object*/
         val json = "{ \"address\": {\"firstAddress\":\"Red Street\",\"secondAddress\":\"Japan\" },\"age\":13,\"firstName\":\"Kat\",\"lastName\":\" Bay\",\"numbers\":[\"8989898\",\"9938323989\"]}"
 //        val user1 = gson.fromJson(json,User::class.java)
-        val user1 = convertFromJson(json,User::class.java)
-        Log.d(TAG, "onCreate: jsonToObject  $user1")
+//        val user1 = convertFromJson(json,User::class.java)
+//        Log.d(TAG, "onCreate: jsonToObject  $user1")
 
 
 
@@ -42,6 +46,17 @@ class MainActivity : AppCompatActivity() {
 //        map["i1"] = 23
 //        Log.d(TAG, "onCreate: mapToJson  ${mapToJsonStr(map)}")
 
+
+        // convert json String to array list direct
+        val listJson = "[{\"age\":30,\"role\":\"Wife\"},{\"age\":5,\"role\":\"Daughter\"}]"
+//        val familyType: Type = object : TypeToken<ArrayList<FamilyMember>>() {}.type
+//        val family: ArrayList<FamilyMember> = gson.fromJson(listJson, familyType)
+//        Log.d(TAG, "onCreate: arrayListStrToArrayList  $family") //[FamilyMember(mRole=Wife, mAge=30), FamilyMember(mRole=Daughter, mAge=5)]
+        val family: List<FamilyMember>? = convertToArrayList(listJson,FamilyMember::class.java)
+        Log.d(TAG, "onCreate: arrayListStrToArrayList  ${family?.get(0)?.mAge}")
+
+        // to convert in array
+//        FamilyMember[] family = gson.fromJson(json,FamilyMember[].class);
 
     }
 }
