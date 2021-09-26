@@ -1,8 +1,8 @@
 package com.example.gsonexamples
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.gsonexamples.databinding.ActivityMainBinding
 import com.example.gsonexamples.models.Address
 import com.example.gsonexamples.models.User
@@ -27,11 +27,20 @@ class MainActivity : AppCompatActivity() {
 
         /*Convert Object to Json */
         val jsonString = convertToJson(user)
-        Log.d(TAG, "onCreate: $jsonString")
-       /*
-       * {"address":{"firstAddress":"Green Street","secondAddress":"USA"},"age":23,"firstName":"Justin","lastName":" Bieber","numbers":["2345678","9039023"]}
-       * */
 
+        /*convert json to object*/
+        val json = "{ \"address\": {\"firstAddress\":\"Red Street\",\"secondAddress\":\"Japan\" },\"age\":13,\"firstName\":\"Kat\",\"lastName\":\" Bay\",\"numbers\":[\"8989898\",\"9938323989\"]}"
+//        val user1 = gson.fromJson(json,User::class.java)
+        val user1 = convertFromJson(json,User::class.java)
+        Log.d(TAG, "onCreate: jsonToObject  $user1")
+
+
+
+//        /* convert map to json */
+//        val map:MutableMap<String?,Any> = mutableMapOf()
+//        map["user1"] = user
+//        map["i1"] = 23
+//        Log.d(TAG, "onCreate: mapToJson  ${mapToJsonStr(map)}")
 
 
     }
