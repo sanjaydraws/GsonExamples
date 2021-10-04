@@ -1,11 +1,8 @@
 package com.example.gsonexamples
 
-import com.example.gsonexamples.models.FamilyMember
-import com.example.gsonexamples.models.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
-import kotlin.reflect.KClass
 
 /**
 * Created By : Sanjay Prajapat
@@ -35,11 +32,19 @@ fun <T> convertFromJson(json:String?, t:Class<T>):T? = Gson().fromJson(json,t)
 * */
 fun <T> mapToJsonStr(map: Map<String?, T>?): String? =  Gson().toJson(map)
 
+
+
 /**
  * convert list of json string to Array List
  * */
-
-fun <T> convertToArrayList(listJson:String?,t:Class<T>): List<T>? {
+inline fun <reified T> convertToArrayList(listJson:String?): List<T>? {
     val tokenType: Type = object : TypeToken<ArrayList<T>>() {}.type
     return Gson().fromJson(listJson, tokenType)
 }
+
+
+
+
+
+
+

@@ -49,11 +49,11 @@ class MainActivity : AppCompatActivity() {
 
         // convert json String to array list direct
         val listJson = "[{\"age\":30,\"role\":\"Wife\"},{\"age\":5,\"role\":\"Daughter\"}]"
-//        val familyType: Type = object : TypeToken<ArrayList<FamilyMember>>() {}.type
-//        val family: ArrayList<FamilyMember> = gson.fromJson(listJson, familyType)
-//        Log.d(TAG, "onCreate: arrayListStrToArrayList  $family") //[FamilyMember(mRole=Wife, mAge=30), FamilyMember(mRole=Daughter, mAge=5)]
-        val family: List<FamilyMember>? = convertToArrayList(listJson,FamilyMember::class.java)
-        Log.d(TAG, "onCreate: arrayListStrToArrayList  ${family?.get(0)?.mAge}")
+        val familyType: Type = object : TypeToken<ArrayList<FamilyMember>>() {}.type
+        var family: ArrayList<FamilyMember> = gson.fromJson(listJson, familyType)
+        Log.d(TAG, "onCreate: arrayListStrToArrayList1  $family") //[FamilyMember(mRole=Wife, mAge=30), FamilyMember(mRole=Daughter, mAge=5)]
+        var family2 = convertToArrayList<FamilyMember>(listJson)
+        Log.d(TAG, "onCreate: arrayListStrToArrayList2  $family2")
 
         // to convert in array
 //        FamilyMember[] family = gson.fromJson(json,FamilyMember[].class);
