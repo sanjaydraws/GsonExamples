@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gsonexamples.databinding.ActivityMainBinding
 import com.example.gsonexamples.models.Address
+import com.example.gsonexamples.models.BaseApiModel
 import com.example.gsonexamples.models.FamilyMember
 import com.example.gsonexamples.models.User
 import com.google.gson.Gson
@@ -57,6 +58,25 @@ class MainActivity : AppCompatActivity() {
 
         // to convert in array
 //        FamilyMember[] family = gson.fromJson(json,FamilyMember[].class);
+
+
+
+//        ===================================================================
+//        val base = BaseApiModel(status = 200, message = "Success", data = user)
+//        Log.d(TAG, "onCreate: BAse  ${convertToJson(base)}")
+
+        val response1 = "{\"data\":{\"address\":{\"firstAddress\":\"Green Street\",\"secondAddress\":\"USA\"},\"age\":23,\"firstName\":\"Justin\",\"lastName\":\" Bieber\",\"numbers\":[\"2345678\",\"9039023\"]},\"message\":\"Success\",\"status\":200}"
+        val baseData1 =convertFromJson(response1,BaseApiModel::class.java)
+        Log.d(TAG, "onCreate: BAse  $baseData1") //BaseApiModel(status=200, message=Success, data={"address":{"firstAddress":"Green Street","secondAddress":"USA"},"age":23,"firstName":"Justin","lastName":" Bieber","numbers":["2345678","9039023"]})
+
+        val response2 = "{\"data\":[{\"age\":30,\"role\":\"Wife\"},{\"age\":5,\"role\":\"Daughter\"}],\"message\":\"Success\",\"status\":200}"
+        val baseData2 =convertFromJson(response2,BaseApiModel::class.java)
+        Log.d(TAG, "onCreate: BAse2  $baseData2") // BaseApiModel(status=200, message=Success, data=[{"age":30,"role":"Wife"},{"age":5,"role":"Daughter"}])
+
+        // convert from jsonElement to any model
+        val user2 = gson.fromJsonElement<User>(baseData1?.data)
+        Log.d(TAG, "onCreate: USER2  $user2") //User(firstName=Justin, lastName= Bieber, age=23, address=Address(firstAddress=Green Street, secondAddress=USA), numbers=[2345678, 9039023])
+
 
     }
 }

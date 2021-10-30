@@ -1,6 +1,7 @@
 package com.example.gsonexamples
 
 import com.google.gson.Gson
+import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
@@ -44,6 +45,7 @@ inline fun <reified T> convertToArrayList(listJson:String?): List<T>? {
 
 
 
+inline fun <reified T : Any> Gson.fromJsonElement(jsonElement: JsonElement?): T = fromJson(jsonElement, T::class.java)
 
 
 
